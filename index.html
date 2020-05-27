@@ -239,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/25/test/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/25/%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -258,7 +258,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/05/25/test/" itemprop="url">test</a></h1>
+                <a class="post-title-link" href="/2020/05/25/%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url">最优化理论与算法</a></h1>
         
 
         <div class="post-meta">
@@ -311,7 +311,46 @@
         
           
             <hr>
-<h2 id="title：test"><a href="#title：test" class="headerlink" title="title：test"></a>title：test</h2><h1 id="第一："><a href="#第一：" class="headerlink" title="第一："></a>第一：</h1><h2 id="第二："><a href="#第二：" class="headerlink" title="第二："></a>第二：</h2><h3 id="第三："><a href="#第三：" class="headerlink" title="第三："></a>第三：</h3><p><img src="/images/1584896851294.jpeg" alt="1584896851294"></p>
+<h2 id="title：作业二"><a href="#title：作业二" class="headerlink" title="title：作业二"></a>title：作业二</h2><h1 id="单纯形法"><a href="#单纯形法" class="headerlink" title="单纯形法"></a>单纯形法</h1><p>一、单纯形法目标</p>
+<ol>
+<li><p>原因：在求基本可行解时发现求出的初始基本可行解与图解法求出的最优解不同.</p>
+</li>
+<li><p>若线性规划（标准形式）有最优解，则必存在最优基本可行解.** 因此求解线性规划问题归结为找最优基本可行解.**</p>
+</li>
+<li><p>单纯形法基本思想：从一个基本可行解出发，求一个使目标函数值有所改善的基本可行解；通过不断改进基本可行解，力图达到最优基本可行解.</p>
+</li>
+</ol>
+<p>二、单纯形法计算步骤 </p>
+<p>以极小化问题为例. 首先给定一个初始基本可行解. 设初始基为 $B$，然后执行下列步骤：</p>
+<ol>
+<li><p>解 $Bx_B = b$, 求得 $x_B = B^{-1}b = \overline{b}$, 令非基变量 $x_N = 0$, 计算目标值 $f = c_Bx_B$. </p>
+</li>
+<li><p>求单纯形乘子 $w$, 解 $wB = c_B$, 得到 $w = c_BB^{-1}$. 对于所有非基变量，计算判别数 $z_j-c_j = wp_j-c_j$, 令 $$z_k-c_k = max_{J\in{R}}\left{z_{ij}-c_{j}\right}$$ 若 $z_{k}-c_{k}\leq 0$, 则对于所有非基变量 $z_{j}-c_{j} \leq 0$, 对应基变量的判别数总是零, 因此停止计算，现行基本可行解是最优解. 否则，进行下一步.</p>
+</li>
+<li><p>解 $By_{k} = p_{k}$, 求得 $y_{k} = B^{-1}p_{k}$, 若 $y_{k}\leq 0$, 即 $y_{k}$ 的每个分量均非正数，则停止计算，问题不存在有限最优解. 否则，进行下一步.</p>
+</li>
+<li><p>确定下标 $r$, 使 $$\frac{\overline{b}<em>{r}}{y</em>{rk}} = \min \left{\frac{\overline{b}<em>{i}}{y</em>{ik}}|y_{ik} &gt; 0\right}$$ $x_{B_{r}}$ 为离基变量,$x_{k}$ 为进基变量. 用 $p_{k}$ 代替 $p_{B_{r}}$, 得到新的基矩阵 $B$.</p>
+</li>
+<li><p>检验数最大值入基；根据 $\frac{\overline{b}<em>{i}}{y</em>{ik}}$ 最小值出基；判别数全为负值时为最优解。</p>
+</li>
+</ol>
+<p>三、练习</p>
+<ol>
+<li>用单纯形法解下列线性规划 $$\min Z = 4x_{1} + x_{2}$$$$s.t. 2x_{1} + 3x_{2} \leq 4$$ $$x_{1} + x_{2} \leq 1$$ $$4x_{1} + x_{2} \leq 2$$ $$x_{1},x_{2} \ge 0$$ 解：引入松弛变量 $x_{3},x_{4},x_{5}$ 将上式化为标准形式：$$\min Z = 4x_{1} + x_{2}$$$$s.t. 2x_{1} + 3x_{2} + x_{3} = 4$$ $$x_{1} + x_{2} + x_{4} = 1$$ $$4x_{1} + x_{2} + x_{5} = 2$$ $$x_{j} \ge 0,j = 1…5$$ 系数矩阵：$$A = (p_{1},p_{2},p_{3},p_{4},p_{5}) = \begin{pmatrix}<pre><code>2 &amp; 3 &amp; 1 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+4 &amp; 1 &amp; 0 &amp; 0 &amp; 1</code></pre> \end{pmatrix}$$ 第一次迭代：<br> $$\begin{align}<br> B = (p_{3},p_{4},p_{5}) = \begin{pmatrix}<pre><code>1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1</code></pre> \end{pmatrix}\<br> B^{-1} = \begin{pmatrix}<pre><code>1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1</code></pre> \end{pmatrix}\<br> x^{1} = \begin{pmatrix}<pre><code>x_{B}\\
+x_{N} </code></pre> \end{pmatrix}\<br> x_{B} = B^{-1}b = \begin{pmatrix}<pre><code>x_{3}\\
+x_{4} \\
+x_{5}</code></pre> \end{pmatrix} = \begin{pmatrix}<pre><code>4 \\
+1 \\
+2</code></pre> \end{pmatrix} \<br> x_{N} = \begin{pmatrix}<pre><code>x_{1}\\
+x_{2} </code></pre> \end{pmatrix} = \begin{pmatrix}<pre><code>0 \\
+0 </code></pre> \end{pmatrix}\<br> f_{1} = c_{B}x_{B} = (0,0,0)(4,12,3)^{T} = 0<br> \end{align}$$</li>
+</ol>
 
           
         
@@ -741,5 +780,5 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
 </html>
